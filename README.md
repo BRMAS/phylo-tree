@@ -11,9 +11,12 @@ PhyloTree
 
 ## Scripts
 
-run python scripts to create json data:
+### scripts to create json data
+read `data/tree_species.csv` and create `scripts/infoDetail.json`
+
+run python via poetry:
 
 ```sh
 cd scripts
-poetry
+poetry run make-detail-json.py
 ```
