@@ -11,8 +11,7 @@ import Grid from '@mui/material/Grid';
 
 import { readData, parseNewick } from './Utils';
 import MainGraph from './MainGraph';
-
-let infoDetail = null;
+import DetailInfo from './DetailInfo';
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -21,10 +20,6 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-
-const DetailInfo = ({info}) => {
-  return (<><h2 id="info-title">{info[0]}</h2><h4 id="info-subtitle">{info[1][0][1]}</h4></>)
-}
 
 const findItem = (key, info) => {
   return Object.entries(info).find((x)=> x[0].indexOf(key) >= 0);
@@ -50,14 +45,14 @@ export default function PhyloTree() {
     const item = findItem(key, data.infoMap);
     setData({...data, currentInfo: item})
   }
-  console.log('data', data);
+  //console.log('data', data);
 
   return (
     <Grid container spacing={1}>
-    <Grid item xs={6} md={8}>
+    <Grid item xs={6} md={6}>
     {data.treeData ? <Item><MainGraph treeData={data.treeData} svgWidth="800" svgHeight="800" showInfo={showInfo} /></Item>
 : null}</Grid>
-    <Grid item xs={6} md={4}>
+    <Grid item xs={6} md={6}>
     {data.currentInfo? <Item><DetailInfo info={data.currentInfo} /></Item>
 : null}
     </Grid>

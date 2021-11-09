@@ -11,7 +11,9 @@
   "dependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
+    "@mui/icons-material": "^5.1.0",
     "@mui/material": "^5.0.6",
+    "@mui/styles": "^5.1.0",
     "babel-loader": "^8.2.3",
     "d3": "^7.1.1",
     "newick-js": "^1.1.1",
