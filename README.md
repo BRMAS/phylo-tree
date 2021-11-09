@@ -8,3 +8,12 @@ PhyloTree
 
 - MainGraph (drawSVG)
 - DetailInfo
+
+## Scripts
+
+run python scripts to create json data:
+
+```sh
+cd scripts
+poetry
+```
