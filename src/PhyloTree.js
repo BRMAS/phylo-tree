@@ -21,9 +21,10 @@ const Item = styled(Paper)(({ theme }) => ({
   color: 'black',
 }));
 
+const bgPath = (REACT_ENV === 'dev') ? '/assets/' : '/static/phylogeny/';
 const useStyles = makeStyles(theme => ({
   root: {
-    backgroundImage: "url('/assets/olga-thelavart-vS3idIiYxX0-unsplash.jpg')",
+    backgroundImage: `url('${bgPath}olga-thelavart-vS3idIiYxX0-unsplash.jpg')`,
   },
 }));
 
