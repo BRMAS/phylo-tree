@@ -15,6 +15,7 @@ PhyloTree
 
 - MainGraph (drawSVG)
 - DetailInfo
+- Footer
 
 ### Scripts
 
@@ -25,6 +26,6 @@ read `data/tree_species.csv` and create `scripts/infoDetail.json`
 run python via poetry:
 
 ```sh
-cd scripts
-poetry run make-detail-json.py
+$ cd scripts
+$ poetry run make-detail-json.py
 ```
