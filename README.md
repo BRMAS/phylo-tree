@@ -2,16 +2,24 @@
 
 Inspried from [Tree of Life / D3 / Observable](https://observablehq.com/@d3/tree-of-life)
 
-## Structure
+
+## Development
+
+```
+npm run dev
+```
+
+### Structure
 
 PhyloTree
 
 - MainGraph (drawSVG)
 - DetailInfo
 
-## Scripts
+### Scripts
 
-### scripts to create json data
+scripts to create json data:
+
 read `data/tree_species.csv` and create `scripts/infoDetail.json`
 
 run python via poetry:

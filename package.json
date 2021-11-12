@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack --mode=development --watch --env dev",
-    "build": "webpack --mode=production --env prod"
+    "dev": "webpack --mode=development --watch --env env=dev",
+    "build": "webpack --mode=production --env env=prod"
   },
   "dependencies": {
     "@emotion/react": "^11.5.0",

@@ -1,15 +1,23 @@
+const webpack = require('webpack');
 const path = require('path');
 
 module.exports = (env) => {
-  const env_name = (env === 'dev') ? '.js' : '.min.js';
+  //console.log(env);
+  //const bundleName = (env.env === 'dev') ? '.js' : '.min.js';
+  const bundleName = '.min.js';
   return {
     entry: {
       'bundle': './src/index.js',
       },
     output: {
       path: path.join(__dirname, 'static/js'),
-      filename: `[name]${env_name}`,
+      filename: `[name]${bundleName}`,
     },
+    plugins: [
+      new webpack.DefinePlugin({
+        REACT_ENV: JSON.stringify(env.env),
+      }),
+    ],
     module: {
       rules: [
         {

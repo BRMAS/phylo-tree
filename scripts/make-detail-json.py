@@ -15,6 +15,7 @@ with open('../data/tree_species.csv') as csvfile:
     for row in reader:
         if counter > 0: # ignore header
             key = ' '.join(row[0].split()) # for remove xa0 (latin1 空白) while export from excel
+            #print(key, row)
             if key != '':
                 append_image_url = ''
                 append_ipni_id = ''

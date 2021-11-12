@@ -1,3 +1,16 @@
+/*
+#4e79a7;
+*/
+
 .current-item {
-  fill: orange;
+  fill: #f28e2c;
+  font: bold 16px sans-serif;
+}
+
+.link--active {
+  stroke: #f28e2c !important;
+  stroke-width: 1.5px;
+}
+.label--active {
+  font-weight: bold;
 }

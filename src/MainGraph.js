@@ -5,10 +5,10 @@ import './PhyloTreeStyles.css';
 
 let color = null;
 
-const width = 600;
-const height = 600;
+const width = 800;
+const height = 800;
 const outerRadius = width / 2;
-const innerRadius = outerRadius - 170;
+const innerRadius = 290;//outerRadius-120;
 
 const legend = (svg) => {
 
@@ -89,7 +89,7 @@ export default function MainGraph({treeData, svgWidth, svgHeight, showInfo}) {
 
     const handleClick = (e) => {
       let key = e.target.innerHTML;
-      key = key.replace('B ', 'Begonia ');
+      key = key.replace('B. ', 'Begonia '); // TODO
       d3.selectAll('svg text').attr('class', '');
       d3.select(e.target).attr('class', 'current-item');
 
@@ -103,14 +103,14 @@ export default function MainGraph({treeData, svgWidth, svgHeight, showInfo}) {
     //const svg = d3.select('#foo')
     //              .append('svg')
     const svg = d3.select(svgEle)
-                  .attr("viewBox", [-outerRadius+50, -outerRadius+50, width, width])
+                  .attr("viewBox", [-outerRadius, -outerRadius, width, width])
                   .attr("font-family", "sans-serif")
-                  .attr("font-size", 10);
+                  .attr("font-size", 14);
 
     svg.append("g")
        .call(legend);
     svg.append("style").text(`
-.link--active {
+.link--active-x {
   stroke: #308ed0 !important;
   stroke-width: 1.5px;
 }
@@ -119,7 +119,7 @@ export default function MainGraph({treeData, svgWidth, svgHeight, showInfo}) {
   stroke-opacity: .6;
 }
 
-.label--active {
+.label--active-x {
   font-weight: bold;
 }`);
 
@@ -151,10 +151,12 @@ export default function MainGraph({treeData, svgWidth, svgHeight, showInfo}) {
        .attr("dy", ".31em")
        .attr("transform", d => `rotate(${d.x - 90}) translate(${innerRadius + 4},0)${d.x < 180 ? "" : " rotate(180)"}`)
        .attr("text-anchor", d => d.x < 180 ? "start" : "end")
-       .text(d => d.data.name.replace(/_/g, " "))
+       .text(d => d.data.name.replace(/_/g, ". "))
        .on('click', (e) => handleClick(e))
        .on("mouseover", mouseovered(true))
        .on("mouseout", mouseovered(false));
+
+    //console.log(svgRef.current.getBoundingClientRect()); TODO: auto count width
   }, []);
 
     return (
