@@ -70,9 +70,10 @@ function linkStep(startAngle, startRadius, endAngle, endRadius) {
 function mouseovered(active) {
   return function(event, d) {
     d3.select(this).classed("label--active", active);
-    d3.select(d.linkExtensionNode).classed("link-extension--active", active).raise();
-    do d3.select(d.linkNode).classed("link--active", active).raise();
-    while (d = d.parent);
+    d3.select(d.linkExtensionNode).classed("link-extension--active", active).raise(); // unknown
+    // 跑線的顏色
+    // do d3.select(d.linkNode).classed("link--active", active).raise();
+    // while (d = d.parent);
   };
 }
 
@@ -87,14 +88,23 @@ export default function MainGraph({treeData, svgWidth, svgHeight, showInfo}) {
                    .sum(d => d.branchset ? 0 : 1)
                    .sort((a, b) => (a.value - b.value) || d3.ascending(a.data.length, b.data.length));
 
-    const handleClick = (e) => {
-      let key = e.target.innerHTML;
-      key = key.replace('B. ', 'Begonia '); // TODO
-      d3.selectAll('svg text').attr('class', '');
-      d3.select(e.target).attr('class', 'current-item');
+    const handleClick = () => {
+      return function(event, d) {
+        let key = event.target.innerHTML;
+        key = key.replace('B. ', 'Begonia '); // TODO
+        d3.selectAll('svg text').attr('class', '');
+        d3.select(event.target).attr('class', 'current-item');
 
-      showInfo(key);
+        //clear link--active
+        d3.selectAll('.link--active').attr('class', '');
+        // draw line to parent
+        do d3.select(d.linkNode).classed("link--active", true).raise();
+        while (d = d.parent);
+
+        showInfo(key);
+      }
     }
+
     d3.cluster()
       .size([360, innerRadius])
       .separation((a, b) => 1)(root);
@@ -152,7 +162,7 @@ export default function MainGraph({treeData, svgWidth, svgHeight, showInfo}) {
        .attr("transform", d => `rotate(${d.x - 90}) translate(${innerRadius + 4},0)${d.x < 180 ? "" : " rotate(180)"}`)
        .attr("text-anchor", d => d.x < 180 ? "start" : "end")
        .text(d => d.data.name.replace(/_/g, ". "))
-       .on('click', (e) => handleClick(e))
+       .on('click', handleClick())
        .on("mouseover", mouseovered(true))
        .on("mouseout", mouseovered(false));
 

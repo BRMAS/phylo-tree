@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function DetailInfo({info}) {
-  console.log(info);
+  //console.log(info);
   const classes = useStyles();
 
   const nameList = info[0].split(' ');
@@ -80,6 +80,7 @@ export default function DetailInfo({info}) {
     <Paper>
     <ul>
     {(powoUrl !== '') ? <li><Link href={powoUrl} target="_blank" rel="noreferrer noopener">Royal Botanic Gardens, Kew</Link></li> : null}
+    <li><Link href={`https://www.gbif.org/species/search?q=${species}`} target="_blank" rel="noreferrer noopener">GBIF</Link></li>
     {(doiUrl !== '') ? <li><Link href={doiUrl} target="_blank" rel="noreferrer noopener">doi</Link></li> : null}
     </ul>
     </Paper>
