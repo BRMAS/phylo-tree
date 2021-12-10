@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python
 # -.- coding: utf-8 -.-
 import requests
@@ -10,7 +11,7 @@ import json
 
 data = {}
 counter = 0
-with open('../data/tree_species.csv') as csvfile:
+with open('../data/tree_species_final-u8.csv') as csvfile:
     reader = csv.reader(csvfile)
     for row in reader:
         if counter > 0: # ignore header

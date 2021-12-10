@@ -19,9 +19,14 @@ PhyloTree
 
 ### Scripts
 
-scripts to create json data:
+1. source: xlsx
+2. export csv (Excel 要特別選 UTF-8 csv)
+3. run `make-detail-json.py` script
 
 read `data/tree_species.csv` and create `scripts/infoDetail.json`
+
+4. copy `scripts/infoDetail.json` to `data/infoDetail.json`
+
 
 run python via poetry:
 

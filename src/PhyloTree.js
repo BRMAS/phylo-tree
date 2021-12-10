@@ -26,6 +26,11 @@ const useStyles = makeStyles(theme => ({
   root: {
     backgroundImage: `url('${bgPath}olga-thelavart-vS3idIiYxX0-unsplash.jpg')`,
   },
+  graphContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
 }));
 
 const findItem = (key, info) => {
@@ -58,8 +63,8 @@ export default function PhyloTree() {
 
   return (
     <>
-    <Grid container spacing={1} className={classes.root}>
-    <Grid item xs={6} md={8}>
+    <Grid container spacing={1} className={classes.root} justifyContent="space-around" alignItems="top">
+    <Grid item xs={6} md={8} className={classes.graphContainer}>
     {data.treeData ? <MainGraph treeData={data.treeData} svgWidth="800" svgHeight="800" showInfo={showInfo} />
 : null}</Grid>
     <Grid item xs={6} md={4}>
