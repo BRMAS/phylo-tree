@@ -21,10 +21,12 @@ const Item = styled(Paper)(({ theme }) => ({
   color: 'black',
 }));
 
+//    backgroundImage: `url('${bgPath}olga-thelavart-vS3idIiYxX0-unsplash.jpg')`,
+//    backgroundImage: `url('${bgPath}4.jpg')`,
 const bgPath = (REACT_ENV === 'dev') ? '/assets/' : '/static/phylogeny/';
 const useStyles = makeStyles(theme => ({
   root: {
-    backgroundImage: `url('${bgPath}olga-thelavart-vS3idIiYxX0-unsplash.jpg')`,
+    backgroundColor: '#efefef',
   },
   graphContainer: {
     display: 'flex',
@@ -47,7 +49,7 @@ export default function PhyloTree() {
 
   useEffect(() => {
     const dataPath = (REACT_ENV === 'dev') ? './data/' : '/static/phylogeny/';
-    const sourceFile = `${dataPath}Final_phylogeny_newspecies.tre`;
+    const sourceFile = `${dataPath}Final_phylogeny_newspecies_reroot.tree`;
     const detailFile = `${dataPath}infoDetail.json`;
 
     readData(sourceFile, detailFile).then((dataList) => {

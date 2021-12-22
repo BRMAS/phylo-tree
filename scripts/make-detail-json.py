@@ -11,7 +11,7 @@ import json
 
 data = {}
 counter = 0
-with open('../data/tree_species_final-u8.csv') as csvfile:
+with open('../data/tree_species_final-211222.csv') as csvfile:
     reader = csv.reader(csvfile)
     for row in reader:
         if counter > 0: # ignore header
@@ -22,7 +22,7 @@ with open('../data/tree_species_final-u8.csv') as csvfile:
                 append_ipni_id = ''
                 append_dist = ''
 
-                data[key] = row[1:]
+                data[key] = row[1:5]
                 #api_url = f'http://powo.science.kew.org/api/1/search?q={sname}'
                 #r = requests.get(api_url)
                 #print (r.json())
@@ -56,9 +56,20 @@ with open('../data/tree_species_final-u8.csv') as csvfile:
 
                 data[key].append(append_image_url)
                 data[key].append(append_ipni_id)
-                data[key].append(append_dist)
-        counter += 1
 
+                sources = 'Royal Botanic Gardens, Kew'
+                if append_dist == '':
+                    print (key, '===== no dist =====')
+                    #    data[key].append('FIXME') # 手工輸入
+                    if custom_dist := row[5]:
+                        append_dist = custom_dist
+                    if custom_sources := row[6]:
+                        sources = custom_sources
+
+                data[key].append(append_dist)
+                data[key].append(sources)
+
+        counter += 1
 
 jdata = json.dumps(data)
 fout = open('infoDetail.json', 'w')

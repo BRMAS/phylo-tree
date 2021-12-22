@@ -27,17 +27,22 @@ const useStyles = makeStyles(theme => ({
     color: '#7d7d7d',
     marginTop: '-7px',
     marginBottom: '3px',
+  },
+  box: {
+    margin: '8px',
+    padding: '0.1px 0px'
   }
 }));
 
 export default function DetailInfo({info}) {
-  //console.log(info);
+  console.log(info);
   const classes = useStyles();
 
   const nameList = info[0].split(' ');
   const species = nameList.splice(0, 2).join(' '); //`${nameList[0]} ${nameList[1]}`;
   const author = nameList.join(' ');
   const distribution = info[1][6].replaceAll(',', ', ');
+  const sources = info[1][7];
   const imgUrl = info[1][4];
   const museUrl = info[1][0];
   const commonName = info[1][1];
@@ -65,23 +70,23 @@ export default function DetailInfo({info}) {
     <Box sx={{typography: 'body1'}} className={classes.container}>
     <Typography variant="h5" align="left" fontStyle="italic" display="inline">{species}</Typography>
     <Typography variant="h5" display="inline"> {author}</Typography>
-    <Typography variant="subtitle1" fontWeight="bold">{commonName}</Typography>
+    <Typography variant="h6" fontWeight="bold">{commonName}</Typography>
     <Divider style={{ marginBottom: '10px'}}/>
 
     {(distribution !== '') ? <>
       <Typography fontWeight="bold" variant="subtitle2">Distribution</Typography>
-      <div className={classes.itemText}><Typography variant="subtitle1">{distribution}</Typography></div>
-      <Typography fontWeight="bold" variant="subtitle2" >Sources</Typography>
-      <div className={classes.itemText}><Typography variant="subtitle1">Royal Botanic Gardens, Kew</Typography></div>
-      </> : null }
+      <div className={classes.itemText}><Typography variant="subtitle1">{distribution}</Typography></div></>
+    : null }
+    <Typography fontWeight="bold" variant="subtitle2" >Sources</Typography>
+    <div className={classes.itemText}><Typography variant="subtitle1">{ sources }</Typography></div>
     {(imgUrl !== '') ? <Box><img src={imgUrl} className={classes.imgbox} target="_blank" rel="noreferrer noopener" onLoad={onImgLoad} className="img" /></Box> : null}
-    {(imgUrl !== '') ? <Box><Link href={museUrl}>開放博物館</Link></Box> : null}
+    {(imgUrl !== '') ? <Box><Link href={museUrl}>開放博物館 | Open Museum</Link></Box> : null}
 
-    <Paper>
+    <Paper className={classes.box} style={{backgroundColor:'#dadadabf'}}>
     <ul>
     {(powoUrl !== '') ? <li><Link href={powoUrl} target="_blank" rel="noreferrer noopener">Royal Botanic Gardens, Kew</Link></li> : null}
     <li><Link href={`https://www.gbif.org/species/search?q=${species}`} target="_blank" rel="noreferrer noopener">GBIF</Link></li>
-    {(doiUrl !== '') ? <li><Link href={doiUrl} target="_blank" rel="noreferrer noopener">doi</Link></li> : null}
+    {(doiUrl !== '') ? <li><Link href={doiUrl} target="_blank" rel="noreferrer noopener">Original Publication</Link></li> : null}
     </ul>
     </Paper>
     </Box>
